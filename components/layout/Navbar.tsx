@@ -2,6 +2,7 @@ import React from 'react'
 import { Flex } from '@chakra-ui/react';
 import AccountNavbar from './Navbar/AccountNavbar';
 import Category from './Navbar/Category';
+import Slide from './Navbar/Slide';
 
 const Navbar = () => {
     
@@ -9,6 +10,7 @@ const Navbar = () => {
     <Flex flexDir={"column"}>
       <AccountNavbar />
       <Category />
+      <Slide />
     </Flex>
   )
 }

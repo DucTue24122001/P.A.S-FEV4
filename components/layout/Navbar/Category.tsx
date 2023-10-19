@@ -16,7 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { useRouter } from "next/router";
 import logo from "../../../public/images/logo.jpg";
-import icon_home from "../../../public/images/icon-home.svg";
+import IconHome from "../../../public/images/icon-home.svg";
 import { colors } from "@/components/chakra-ui/colors";
 
 const Category = () => {
@@ -24,17 +24,15 @@ const Category = () => {
     (state: RootState) => state.account
   );
   const tenancy = useTenancy();
-  const [gametype, setGametype] = useState("");
-  const dispatch = useDispatch();
   const router = useRouter();
-
-  const handleClickCategory = (gametype: any) => {
+  const dispatch = useDispatch();
+  const [gametype, setGametype] = useState("");
+  const [pos, setPos] = useState();
+  const handleClickCategory = (gametype: any, i: any) => {
     setGametype(gametype);
     localStorage.setItem("NAV_NAME", gametype);
-    router.push(`/category/${gametype}`);
+    // router.push(`/category/${gametype}`);
   };
-
-  console.log(gametype);
 
   useEffect(() => {
     (async () => {
@@ -56,77 +54,77 @@ const Category = () => {
       case "SPORTS":
         return (
           <SportIcon
-            width={["20", "50", "50", "100"]}
-            height={["44", "88", "88", "88"]}
+            width={"45px"}
+            height={"45px"}
             viewBox="0 0 32 32"
-            fill={"#44e42e"}
+            fill={"#e5c25e"}
           />
         );
       case "LIVE":
         return (
           <CasinoIcon
-            width={["20", "50", "50", "100"]}
-            height={["44", "88", "88", "88"]}
+            width={"45px"}
+            height={"45px"}
             viewBox="0 0 32 32"
-            fill={"#44e42e"}
+            fill={"#e5c25e"}
           />
         );
       case "SLOT":
         return (
           <SlotIcon
-            width={["20", "50", "50", "100"]}
-            height={["44", "88", "88", "88"]}
+            width={"45px"}
+            height={"45px"}
             viewBox="0 0 32 32"
-            fill={"#44e42e"}
+            fill={"#e5c25e"}
           />
         );
       case "FH":
         return (
           <FishingIcon
-            width={["20", "50", "50", "100"]}
-            height={["44", "88", "88", "88"]}
+            width={"45px"}
+            height={"45px"}
             viewBox="0 0 32 32"
-            fill={"#44e42e"}
+            fill={"#e5c25e"}
           />
         );
 
       case "LOTTERY":
         return (
           <LotteryIcon
-            width={["20", "50", "50", "100"]}
-            height={["44", "88", "88", "88"]}
+            width={"45px"}
+            height={"45px"}
             viewBox="0 0 32 32"
-            fill={"#44e42e"}
+            fill={"#e5c25e"}
           />
         );
 
       case "ARCADE":
         return (
           <ArcadeIcon
-            width={["20", "50", "50", "100"]}
-            height={["44", "88", "88", "88"]}
+            width={"45px"}
+            height={"45px"}
             viewBox="0 0 32 32"
-            fill={"#44e42e"}
+            fill={"#e5c25e"}
           />
         );
 
       case "RNGTABLE":
         return (
           <TableIcon
-            width={["20", "50", "50", "100"]}
-            height={["44", "88", "88", "88"]}
+            width={"45px"}
+            height={"45px"}
             viewBox="0 0 32 32"
-            fill={"#44e42e"}
+            fill={"#e5c25e"}
           />
         );
 
       case "LIVEARENA":
         return (
           <LivearenaIcon
-            width={["20", "20", "20", "100"]}
-            height={["44", "44", "44", "88"]}
+            width={"45px"}
+            height={"45px"}
             viewBox="0 0 32 32"
-            fill={"#44e42e"}
+            fill={"#e5c25e"}
           />
         );
 
@@ -159,7 +157,11 @@ const Category = () => {
           overflowX={["scroll", "scroll", "scroll", "unset"]}
           gap={0}
         >
-          <Flex padding={"0.7rem 15px 0"}>
+          <Flex
+            padding={"0.9rem 15px 0"}
+            cursor={"pointer"}
+            onClick={() => router.push("/")}
+          >
             <Image
               w={"73px"}
               h={"70px"}
@@ -172,16 +174,22 @@ const Category = () => {
             flexDir={"column"}
             justifyContent={"center"}
             alignItems={"center"}
-            padding={"0.7rem 15px 0"}
+            padding={"1.2rem 15px 0"}
+            borderLeft={"1px solid #03110a"}
+            borderRight={"1px solid #03110a"}
+            bgImage={router.asPath === "/" ? "linear-gradient(-180deg, #C2A056 15%, #625424 47%, #45391A 50%, #0C171F 100%)" : ""}
           >
-            <Image
-              w={"53px"}
-              h={"50px"}
-              objectFit={"contain"}
-              src={icon_home.src}
-              alt="gift"
-            />
-            <Text color={colors.global.primary}>Home</Text>
+            <IconHome width={"45px"} height={"45px"} fill={"#e5c25e"} />
+            <Text
+              color={colors.global.primary}
+              textTransform={"uppercase"}
+              display={"block"}
+              fontSize={"14px"}
+              fontWeight={400}
+              textShadow={"0 0 4px #d09926"}
+            >
+              Home
+            </Text>
           </Flex>
           {categoryData?.gameType?.map((item: any, i: any) => (
             <Flex
@@ -189,29 +197,20 @@ const Category = () => {
               justifyContent={"center"}
               alignItems={"center"}
               flexDir={"column"}
-              bg={
-                // router.query.page !== item.game_type
-                //   ?
-                "linear-gradient(180deg, #bd9b2a96 0%, #45370916 100%)"
-                //   : ""
-              }
               padding={"0.7rem 15px 0"}
               display={"inline-block"}
               textAlign={"center"}
               cursor={"pointer"}
-              border={
-                router !== item.game_type
-                  ? "1px solid #03110a"
-                  : "1px solid #0a502b"
-              }
+              borderLeft={"1px solid #03110a"}
+              borderRight={"1px solid #03110a"}
               transition={"all 0.3 ease-out"}
-              onClick={() => handleClickCategory(item.game_type)}
+              onClick={() => handleClickCategory(item.game_type, i)}
               w={["80px", "100px", "100px", "auto"]}
             >
               <Flex
                 justifyContent={"center"}
                 alignItems={"center"}
-                p={"20px 20px"}
+                padding={"0.7rem 15px 0"}
               >
                 {getIconFromGameType(item.game_type)}
               </Flex>
@@ -219,9 +218,9 @@ const Category = () => {
                 color={colors.global.primary}
                 textTransform={"uppercase"}
                 display={"block"}
-                fontSize={"12px"}
+                fontSize={"14px"}
                 fontWeight={400}
-                textShadow={"0 0 4px #00d741"}
+                textShadow={"0 0 4px #d09926"}
               >
                 {item.game_type_name}
               </Text>
