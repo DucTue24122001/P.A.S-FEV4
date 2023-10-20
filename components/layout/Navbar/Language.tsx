@@ -7,6 +7,7 @@ import IconMenu from "../../../public/images/icon-menu.svg";
 import flag_en from "../../../public/images/EN.webp";
 import flag_my from "../../../public/images/MY.webp";
 import { useOnHoverOutside } from "@/util/useOutsideHandler";
+import { useRouter } from "next/router";
 
 const Language = () => {
   const dropdowLanguage = useRef<any>(null);
@@ -15,6 +16,7 @@ const Language = () => {
   const [isDropdowMenuLanguage, setIsDropdowMenuLanguage] =
     useState<any>(false);
   const [isDropdowMenuToggle, setIsDropdowMenuToggle] = useState<any>(false);
+  const router = useRouter()
 
   const closeHoverLanguageMenu = () => {
     setIsDropdowMenuLanguage(false);
@@ -95,6 +97,7 @@ const Language = () => {
         _hover={{
           bg: "linear-gradient(-180deg, #C2A056 15%, #625424 47%, #45391A 50%, #0c171f80 100%);",
         }}
+        onClick={() => router.push('/inbox')}
       >
         <IconInbox />
       </Flex>
@@ -130,6 +133,7 @@ const Language = () => {
                 _hover={{
                   bg: "linear-gradient(#2D465F, #142531 , #2D465F)",
                 }}
+                onClick={() => router.push(item.href)}
               >
                 {/* <Image w={"20px"} h={"15px"} src={item.img} alt={item.name} /> */}
                 <Text color={"#EDD4AC"} ml={3}>
@@ -150,7 +154,7 @@ const language = [
   { name: "MY", img: flag_my.src },
 ];
 const toggleDummy = [
-  { name: "Transaction Report", href:"" },
+  { name: "Transaction Report", href:"/report" },
   { name: "Member Info", href:"" },
   { name: "Fund In/Out", href:""},
   { name: "Outstanding", href:"" },

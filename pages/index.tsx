@@ -137,8 +137,8 @@ export default function Home() {
                         alt={items?.game_name_en}
                         w={"100%"}
                         h={["115px", "140px", "173px", "233px"]}
-                        borderTopRightRadius={5}
-                        borderTopLeftRadius={5}
+                        borderTopRightRadius={10}
+                        borderTopLeftRadius={10}
                         objectFit={"cover"}
                         src={items?.imageURL}
                         // onClick={showLoginModal}
