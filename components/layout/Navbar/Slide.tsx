@@ -25,7 +25,9 @@ const Slide = () => {
   }, [tenancy]);
   
     return (
-      <Box w={"100%"}>
+      <Box w={"100%"} bg={"#0c151d"}>
+
+      <Box w={["100%","100%","100%","1024px"]} margin={"auto"}>
         <Slider dots={true} infinite={true} autoplay={true} autoplaySpeed={4000} slidesToScroll={1} slidesToShow={1} arrows={false}  className='home-slider'
           appendDots={(dots) => (
             <Box pos={"absolute"} top={["70%","70%","85%","85%"]} h={'10px'}>
@@ -34,10 +36,11 @@ const Slide = () => {
           )}>
           {slider.map((item, i) => (
             <Flex key={i} bgColor={"#0c151d"} outline={"none"}>
-              <Image w={"100%"} maxH={"250px"} src={item.imageUrl} objectFit={"contain"} alt={item.title} />
+              <Image w={"100%"} maxH={"260px"} src={item.imageUrl} objectFit={"contain"} alt={item.title} />
             </Flex>
           ))}
         </Slider>
+      </Box>
       </Box>
     )
 }

@@ -26,7 +26,7 @@ const baseTheme = extendTheme({
         "html, body": {
           boxSizing: "border-box",
           // fontSize: isMobileBreakpoint ? "sm" : "md",
-          fontFamily: `'icomoon'`,
+          fontFamily: `'Roboto', sans-serif`,
           color: "#003534",
           bgGradient: "linear-gradient(0deg, #0C151D 4%, #182A3B 100%);",
           bgRepeat: "no-repeat",

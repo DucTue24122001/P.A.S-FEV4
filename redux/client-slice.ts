@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { LoginShowEnum, PoliciesEnum, PromotionDetailEnum } from "../components/constants/enum";
-import { AnnounceType, PromotionDetail, PromotionType, SliderType } from "../components/constants/type";
+import { AnnounceType, OldAccountInfoType, PromotionDetail, PromotionType, SliderType } from "../components/constants/type";
 
 
 export const clientSlice = createSlice({
@@ -8,7 +8,7 @@ export const clientSlice = createSlice({
     initialState: {
         isShowLoginModal: false,
         currentSectionShow: <LoginShowEnum>"",
-        isShowLanguageModal:false,
+        isShowLanguageModal: false,
         languageList: <string[]>[],
         language: "EN",
         //slider
@@ -27,6 +27,18 @@ export const clientSlice = createSlice({
         currentTurnover: <number>0,
         currentMinDeposit: <number>0,
         currentMaxBonus: <number>0,
+        isCheckRemember: <any>false,
+        loginForm: {
+            usernameOrEmailAddress: "",
+            password: "",
+        },
+        oldAccountRegistInfo: <OldAccountInfoType>{
+            name: "",
+            userName: "",
+            phoneNumber: "",
+            password: "",
+            emailAddress: "",
+        },
     },
     reducers: {
         setLanguageList(state, action) {
@@ -38,7 +50,7 @@ export const clientSlice = createSlice({
         handleShowPromoModal(state, action) {
             state.isShowPromoModal = action.payload
         },
-        handleShowLoginModal(state,action){
+        handleShowLoginModal(state, action) {
             state.isShowLoginModal = action.payload
         },
         setCurrentPromo(state, action) {
@@ -64,16 +76,31 @@ export const clientSlice = createSlice({
         buyPromoFunctionHandler(state, action) {
             const promoFunction = action.payload
             state.promotionCheck = !state.promotionCheck
-            state.currentPromo = {...state.currentPromo, statusPromotion: promoFunction.status}
+            state.currentPromo = { ...state.currentPromo, statusPromotion: promoFunction.status }
             state.promotionList = state.promotionList.map((promo: PromotionType) => {
-              if (promo.id === promoFunction.id) {
-                return {...promo, statusPromotion: promoFunction.status}
-              }
-              return promo
+                if (promo.id === promoFunction.id) {
+                    return { ...promo, statusPromotion: promoFunction.status }
+                }
+                return promo
             })
         },
         setCurrentPolicies(state, action) {
-          state.currentPolicies = action.payload;
+            state.currentPolicies = action.payload;
+        },
+        setIsCheckRemember(state, action) {
+            state.isCheckRemember = action.payload;
+        },
+        setLoginForm(state, action) {
+            const { name, value } = action.payload;
+            state.loginForm = { ...state.loginForm, [name]: value };
+        },
+        setOldAccountRegistInfo(state, action) {
+            state.oldAccountRegistInfo = { ...state.oldAccountRegistInfo, ...action.payload };
+        },
+        setRememberMeLogin(state, action) {
+            const rememberMeState = action.payload;
+            state.loginForm.usernameOrEmailAddress = rememberMeState.username;
+            state.loginForm.password = rememberMeState.password;
         },
     }
 

@@ -28,7 +28,7 @@ const Marque = () => {
     
   
     return (
-      <Flex h={"30px"} lineHeight={"30px"} w={"80%"} p={"0 10px"}>
+      <Flex h={"30px"} lineHeight={"30px"} w={"100%"} p={"0 10px"}>
         {announce.length > 0 && <Marquee speed={40} style={{color:"#f5ffe1", fontSize:"13px"}}>
           {announce.map((item, i) => (
             <Text key={i} ml={"40px"} color={colors.global.primary}>{item.title}: {item.body}</Text>

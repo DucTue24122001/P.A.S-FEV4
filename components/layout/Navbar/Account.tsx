@@ -5,9 +5,12 @@ import { colors } from '@/components/chakra-ui/colors';
 import CopyButton from '@/components/constants/CopyButton';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
+import { convertDecimalNum } from '@/util/function';
 
 const Account = () => {
   const { accountDetail } = useSelector((state: RootState) => state.account);
+  console.log(accountDetail);
+  
 
   return (
     <Flex alignItems={"center"} w={"15%"} justifyContent={"center"}>
@@ -16,7 +19,7 @@ const Account = () => {
         </Flex>
         <Flex flexDir={"column"} ml={2}>
           <Text color={colors.global.primary} fontSize={"14px"}>
-            sieutritue2412
+          {accountDetail.name}
           </Text>
           <Flex
             background={"#0b1218"}
@@ -31,15 +34,14 @@ const Account = () => {
               ID :
             </Text>
             <Text p={"0 10px"} color={"#fff"} fontSize={"13px"}>
-              abcbabc
-              {/* {accountDetail.referralCode} */}
+              {accountDetail.referralCode}
             </Text>
             <CopyButton h="10px" copyText={accountDetail.referralCode} />
           </Flex>
         </Flex>
         <Flex ml={3}>
           <Text color={colors.global.primary} fontWeight={700}>
-            $ 0.00
+            $ {convertDecimalNum(accountDetail.balance)}
           </Text>
         </Flex>
       </Flex>

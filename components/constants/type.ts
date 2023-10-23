@@ -116,3 +116,11 @@ export type SliderType = {
   title: string,
   category: string,
 }
+export type OldAccountInfoType = {
+  name: string,
+  surname: string,
+  userName: string,
+  phoneNumber: string,
+  password: string,
+  emailAddress: string
+}
