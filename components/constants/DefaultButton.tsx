@@ -6,7 +6,8 @@ const DefaultButton = ({children, ...props}: any) => {
     <Button _focusVisible={{outline: "none"}} w={"100%"} h={["50px","50px","50px","40px","40px"]} fontSize={"15px"} 
       _hover={{filter: "brightness(85%)"}} transition={".3s"}
       color={'white'}
-      bgGradient='linear(#2ee983 , #257248)'
+      bgGradient="linear-gradient(180deg, #f09c1a 25%, #feff83 100%)"
+      boxShadow={"0 0 10px #ffeb3b"}
       {...props}>
       {children}
     </Button>

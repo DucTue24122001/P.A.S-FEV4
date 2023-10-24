@@ -39,6 +39,7 @@ export const clientSlice = createSlice({
             password: "",
             emailAddress: "",
         },
+        gameType:"",
     },
     reducers: {
         setLanguageList(state, action) {
@@ -102,6 +103,9 @@ export const clientSlice = createSlice({
             state.loginForm.usernameOrEmailAddress = rememberMeState.username;
             state.loginForm.password = rememberMeState.password;
         },
+        setGameType(state, action){
+            state.gameType = action.payload
+        }
     }
 
 })

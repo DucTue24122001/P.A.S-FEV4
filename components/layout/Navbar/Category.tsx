@@ -17,22 +17,29 @@ import { RootState } from "@/redux/store";
 import { useRouter } from "next/router";
 import IconHome from "../../../public/images/icon-home.svg";
 import { colors } from "@/components/chakra-ui/colors";
+import { clientAction } from "@/redux/client-slice";
 
 const Category = () => {
   const { categoryData }: any = useSelector(
     (state: RootState) => state.account
   );
+  const { gameType }: any = useSelector(
+    (state: RootState) => state.client
+  );
   const tenancy = useTenancy();
   const router = useRouter();
   const dispatch = useDispatch();
   const [gametype, setGametype] = useState("");
-  const [pos, setPos] = useState<any>("");
   const handleClickCategory = (gametype: any, i: any) => {
-    setPos(i);
     setGametype(gametype);
     localStorage.setItem("NAV_NAME", gametype);
-    // router.push(`/category/${gametype}`);
+    dispatch(clientAction.setGameType(gametype))
   };
+  const handleClickHome = () => {
+    dispatch(clientAction.setGameType(""))
+  }
+  
+  
 
   useEffect(() => {
     (async () => {
@@ -135,7 +142,9 @@ const Category = () => {
   return (
     <Flex
       w={"100%"}
-      pos={"relative"}
+      pos={["relative","relative","relative","sticky"]}
+      top={[0,0,0,90]}
+      zIndex={1000}
       height={"90px"}
       bg={
         "linear-gradient(-180deg, #2D465F 15%, #142531 47%, #0B1720 50%, #0C171F 100%)"
@@ -153,7 +162,7 @@ const Category = () => {
         <Flex
           w={"1024px"}
           h={"100%"}
-          // templateColumns={"repeat(10, 1fr)"}
+          // templateColumns={"repeat(6, 1fr)"}
           overflowX={["scroll", "scroll", "scroll", "unset"]}
           gap={0}
         >
@@ -161,18 +170,19 @@ const Category = () => {
             flexDir={"column"}
             justifyContent={"center"}
             alignItems={"center"}
-            padding={"0.7rem 25px 0"}
+            display={"inline-block"}
+            padding={"10px 25px"}
             borderLeft={"1px solid #03110a"}
             borderRight={"1px solid #03110a"}
             bgImage={
-              pos === 8 || router.asPath === "/"
+              gameType === ""
                 ? "linear-gradient(-180deg, #C2A056 15%, #625424 47%, #45391A 50%, #0C171F 100%)"
                 : ""
             }
             _hover={{
               bg: "linear-gradient(180deg, #bd9b2a96 0%, #45370916 100%)",
             }}
-            onClick={() => setPos(8)}
+            onClick={handleClickHome}
           >
             <IconHome width={"45px"} height={"45px"} fill={"#e5c25e"} />
             <Text
@@ -197,15 +207,14 @@ const Category = () => {
               textAlign={"center"}
               cursor={"pointer"}
               borderLeft={"1px solid #03110a"}
-              borderRight={"1px solid #03110a"}
+              // borderRight={"1px solid #03110a"}
               transition={"all 0.3 ease-out"}
               onClick={() => handleClickCategory(item.game_type, i)}
-              w={["80px", "100px", "100px", "auto"]}
               _hover={{
                 bg: "linear-gradient(180deg, #bd9b2a96 0%, #45370916 100%)",
               }}
               bg={
-                pos === i
+                gameType === item.game_type
                   ? "linear-gradient(-180deg, #C2A056 15%, #625424 47%, #45391A 50%, #0C171F 100%)"
                   : ""
               }
@@ -213,7 +222,6 @@ const Category = () => {
               <Flex
                 justifyContent={"center"}
                 alignItems={"center"}
-                padding={"0.7rem 15px 0"}
               >
                 {getIconFromGameType(item.game_type)}
               </Flex>

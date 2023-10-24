@@ -4,19 +4,22 @@ export enum LoginShowEnum {
 }
 
 export enum PageEnum {
-  DOWNLOAD = "download",
-  PROMO = "promotion",
-  DEPOSIT = "deposit",
-  WITHDRAW = "withdraw",
-  PROFILE = "profile",
-  ADDBANK = "addBank",
-  RECORD = "records",
-  INBOX = "inbox",
-  CHANGEPASSWORD = "changePass",
-  ANNOUNCE = "announce",
-  REPORT = "report",
-  AGENT = "AGENT",
-  POLICIES = "policies"
+  SignUp = "signup",
+  Home = "home",
+  Promo = "promotion",
+  Account = "account",
+  Withdraw = "withdraw",
+  BankAccount = "myBankAccount",
+  Deposit = "deposit",
+  Wallet = "wallet",
+  Record = "records",
+  Profile = "profile",
+  Inbox = "inbox",
+  Announce = "announcement",
+  ChangePass = "changePassword",
+  Policies = "policies",
+  Transaction = "report",
+  More = "more",
 }
 
 export enum LoginFormEnum {
@@ -83,4 +86,15 @@ export enum PromotionDetailEnum {
   TURNOVER = "turnover",
   MINDEPO = "mindeposit",
   MAXBONUS = "maxbonus",
+}
+export enum ListCategory {
+  HOME = "",
+  LIVEARENA = "LIVEARENA",
+  LIVE = "LIVE",
+  FH = "FH",
+  SPORTS = "SPORTS",
+  SLOT = "SLOT",
+  LOTTERY = "LOTTERY",
+  ARCADE = "ARCADE",
+  RNGTABLE = "RNGTABLE",
 }

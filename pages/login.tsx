@@ -26,6 +26,7 @@ import { useDispatch } from "react-redux";
 import httpClient from "@/components/http-client/httpClient";
 import { accountAction } from "@/redux/account-slice";
 import { colors } from "@/components/chakra-ui/colors";
+import { ArrowForwardIcon, CloseIcon } from "@chakra-ui/icons";
 
 const Login = () => {
   const [loginForm, setLoginForm] = useState({
@@ -66,7 +67,7 @@ const Login = () => {
         ...loginForm,
         TenancyName: tenancy?.tenancyName,
       });
-      // dispatch(accountAction.setCheckToken(data.result.token))
+      dispatch(accountAction.setToken(data.result.token))
       if (data.error) {
         setIsError(data.error.message);
       } else {
@@ -91,6 +92,11 @@ const Login = () => {
       setIsLoading(false);
     }
   };
+  const handleBack = () => {
+    if(typeof window !== undefined){
+      window.history.back()
+    }
+  }
 
   return (
     <Box
@@ -99,7 +105,11 @@ const Login = () => {
       bgImage={bg_login.src}
       bgRepeat={"no-repeat"}
       bgSize={"cover"}
+      pos={"relative"}
     >
+      <Box zIndex={1000000} p={"5px 12px"} bg={"linear-gradient(180deg, #f09c1a 25%, #feff83 100%)"} boxShadow={"0 0 10px #ffeb3b"} pos={"absolute"} right={[5,10,10,10]} top={[5,10,10,10]} cursor={"pointer"} onClick={handleBack} >
+        <CloseIcon color={"#fff"} fontSize={13} />
+      </Box>
       <Box
         pos={"relative"}
         w={["100%", "100%", "100%", "1400px"]}

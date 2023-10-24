@@ -31,7 +31,7 @@ const GameHotHome = () => {
       };
     
       return (
-        <Flex pt={10} pb={10} justifyContent={"center"} px={[2, 2, 2, 0]}>
+        <Flex pt={10} pb={20} justifyContent={"center"} px={[2, 2, 2, 0]}>
           <Flex flexDir={"column"} maxW={"1024px"}>
             {categoryData?.gameType?.map((item: any, i: number) =>
               categoryData?.gameList?.filter(

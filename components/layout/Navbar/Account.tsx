@@ -9,11 +9,10 @@ import { convertDecimalNum } from '@/util/function';
 
 const Account = () => {
   const { accountDetail } = useSelector((state: RootState) => state.account);
-  console.log(accountDetail);
   
-
   return (
-    <Flex alignItems={"center"} w={"15%"} justifyContent={"center"}>
+    <Flex  w={"100%"} justifyContent={["space-between","flex-end","flex-end","flex-end"]} alignItems={"center"}>
+        <Flex alignItems={"center"}>
         <Flex>
           <IconID />
         </Flex>
@@ -38,6 +37,7 @@ const Account = () => {
             </Text>
             <CopyButton h="10px" copyText={accountDetail.referralCode} />
           </Flex>
+        </Flex>
         </Flex>
         <Flex ml={3}>
           <Text color={colors.global.primary} fontWeight={700}>

@@ -10,6 +10,7 @@ import {Provider} from "react-redux"
 import "../styles/slider.css"
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
+import Footer from "@/components/layout/Footer";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -19,6 +20,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <TenancyProvider>
             <Navbar />
             <Component {...pageProps} />
+            <Footer/>
           </TenancyProvider>
         </ViewportProvider>
       </ChakraProvider>
