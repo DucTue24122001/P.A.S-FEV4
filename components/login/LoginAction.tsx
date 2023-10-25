@@ -24,6 +24,7 @@ import DefaultInputPassword from "../constants/DefaultInputPassword";
 import { LoginFormEnum } from "../constants/enum";
 import logo from "../../public/images/logo.jpg";
 import Account from "../layout/Navbar/Account";
+import { accountAction } from "@/redux/account-slice";
 
 const LoginAction = () => {
   const router = useRouter();
@@ -90,8 +91,10 @@ const LoginAction = () => {
           ClientService.unsaveRememberMe();
         }
         if (data.result.token) {
+          dispatch(accountAction.setToken(data.result.token))
           ClientService.login(data.result.token);
           router.push("/");
+          
         } else {
           // dispatch(clientAction.handleShowRegistOldAccountModal(true));
           dispatch(

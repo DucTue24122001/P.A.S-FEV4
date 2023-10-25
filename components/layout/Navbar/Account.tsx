@@ -6,6 +6,7 @@ import CopyButton from '@/components/constants/CopyButton';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
 import { convertDecimalNum } from '@/util/function';
+import Language from '../multiple-language/language';
 
 const Account = () => {
   const { accountDetail } = useSelector((state: RootState) => state.account);
@@ -44,6 +45,7 @@ const Account = () => {
             $ {convertDecimalNum(accountDetail.balance)}
           </Text>
         </Flex>
+        <Language />
       </Flex>
   )
 }

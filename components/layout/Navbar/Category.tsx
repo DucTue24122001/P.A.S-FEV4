@@ -29,9 +29,8 @@ const Category = () => {
   const tenancy = useTenancy();
   const router = useRouter();
   const dispatch = useDispatch();
-  const [gametype, setGametype] = useState("");
+  const [data, setData] = useState([]);
   const handleClickCategory = (gametype: any, i: any) => {
-    setGametype(gametype);
     localStorage.setItem("NAV_NAME", gametype);
     dispatch(clientAction.setGameType(gametype))
   };
@@ -50,7 +49,7 @@ const Category = () => {
           tenancyName: tenancy?.tenancyName,
         });
         dispatch(accountAction.setCategoryData(res.result));
-        setGametype(res.result.gameType[0].game_type);
+        setData(res.result);
       } catch (error) {
         console.log(error);
       }

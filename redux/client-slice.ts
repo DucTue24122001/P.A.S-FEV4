@@ -40,6 +40,7 @@ export const clientSlice = createSlice({
             emailAddress: "",
         },
         gameType:"",
+        platform:"",
     },
     reducers: {
         setLanguageList(state, action) {
@@ -105,6 +106,10 @@ export const clientSlice = createSlice({
         },
         setGameType(state, action){
             state.gameType = action.payload
+            state.platform = ""
+        },
+        setPlatform(state, action){
+            state.platform = action.payload
         }
     }
 

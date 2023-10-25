@@ -131,7 +131,7 @@ const GameHotHome = () => {
                             {items?.playable !== false ? (
                               ""
                             ) : (
-                              <HiWrenchScrewdriver color="#44e42e" />
+                              <HiWrenchScrewdriver color={colors.global.primary} />
                             )}
                           </Box>
                           <Image

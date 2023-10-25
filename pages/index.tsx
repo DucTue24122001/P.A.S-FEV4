@@ -9,10 +9,8 @@ import GameType from "@/components/Home/GameType/GameType";
 import { ListCategory } from "@/components/constants/enum";
 
 export default function Home() {
-  const { categoryData }: any = useSelector(
-    (state: RootState) => state.account
-  );
   const { gameType }: any = useSelector((state: RootState) => state.client);
+  console.log(gameType);
   const checkCategory = () => {
     switch (gameType) {
       case ListCategory.HOME:

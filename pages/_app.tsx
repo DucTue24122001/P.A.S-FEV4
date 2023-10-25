@@ -11,8 +11,10 @@ import "../styles/slider.css"
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import Footer from "@/components/layout/Footer";
+import { appWithI18Next } from "ni18n";
+import { ni18nConfig } from "@/ni18n.config";
 
-export default function App({ Component, pageProps }: AppProps) {
+ function App({ Component, pageProps }: AppProps) {
   return (
     <Provider store={store}>
       <ChakraProvider theme={baseTheme} toastOptions={{ defaultOptions: { position: 'bottom', duration: 3000, isClosable: true } }}>
@@ -27,3 +29,4 @@ export default function App({ Component, pageProps }: AppProps) {
     </Provider>
   );
 }
+export default appWithI18Next(App, ni18nConfig);
